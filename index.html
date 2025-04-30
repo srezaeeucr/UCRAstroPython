@@ -11,12 +11,21 @@
             margin: 2rem auto;
             max-width: 800px;
             padding: 0 1rem;
-            background-image: url('IMG_0466.JPG'); /* your image file */
-            background-size: cover; /* cover entire screen */
+            background-image: url('IMG_0466.JPG'); /* or try .jpg if case sensitive */
+            background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            background-position: center;
             color: #333;
         }
+        
+        /* Add a semi-transparent white background to content */
+        .content {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
         h1 {
             color: #2c3e50;
             font-size: 2em;
@@ -38,26 +47,25 @@
             padding-left: 1.2rem;
         }
     </style>
-    
 </head>
 <body>
+    <div class="content">
+        <h1>Advanced Python in Astronomy 🌌</h1>
 
-    <h1>Advanced Python in Astronomy 🌌</h1>
+        <p>Welcome to the course website for <strong>Advanced Python in Astronomy</strong> taught by Dr. Saeed Rezaee.</p>
 
-    <p>Welcome to the course website for <strong>Advanced Python in Astronomy</strong> taught by Dr. Saeed Rezaee.</p>
+        <h2>📘 Course Overview</h2>
+        <ul>
+            <li>Explore scientific computing using Python</li>
+            <li>Real-world astronomical datasets</li>
+        </ul>
 
-    <h2>📘 Course Overview</h2>
-    <ul>
-        <li>Explore scientific computing using Python</li>
-        <li>Real-world astronomical datasets</li>
-    </ul>
-
-    <h2>📂 Course Materials</h2>
-    <ul>
-        <li><a href="./lectures/">Lecture Slides</a></li>
-        <li><a href="./assignments/">Assignments</a></li>
-        <li><a href="./notebooks/">Notebook Demos</a></li>
-    </ul>
-
+        <h2>📂 Course Materials</h2>
+        <ul>
+            <li><a href="./lectures/">Lecture Slides</a></li>
+            <li><a href="./assignments/">Assignments</a></li>
+            <li><a href="./notebooks/">Notebook Demos</a></li>
+        </ul>
+    </div>
 </body>
 </html>
