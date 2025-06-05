@@ -268,6 +268,71 @@
             to { transform: translateX(0); }
         }
 
+        /* Course Flow Visualization */
+        .course-flow {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.05), rgba(139, 92, 246, 0.05));
+            border-radius: 15px;
+            border: 1px solid rgba(0, 180, 216, 0.2);
+        }
+
+        .flow-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .flow-node {
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.1), rgba(139, 92, 246, 0.1));
+            border: 2px solid rgba(0, 180, 216, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 200px;
+            position: relative;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .flow-node:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.3);
+            border-color: var(--neon-purple);
+        }
+
+        .flow-node::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .flow-node:hover::before {
+            opacity: 0.7;
+        }
+
+        .flow-arrow {
+            font-size: 2rem;
+            color: var(--neon-blue);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
         /* Hero Section */
         .hero-section {
             text-align: center;
@@ -634,8 +699,6 @@
             color: var(--neon-blue);
             transform: translateX(5px);
         }
-
-        /* Prerequisites Checklist */
         .prereq-checklist {
             display: flex;
             flex-direction: column;
@@ -664,7 +727,6 @@
             font-size: 1.2rem;
             font-weight: bold;
         }
-
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -714,71 +776,6 @@
         @keyframes float-icon {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
-        }
-
-        /* Course Flow Visualization */
-        .course-flow {
-            margin: 3rem 0;
-            padding: 2rem;
-            background: linear-gradient(135deg, rgba(0, 180, 216, 0.05), rgba(139, 92, 246, 0.05));
-            border-radius: 15px;
-            border: 1px solid rgba(0, 180, 216, 0.2);
-        }
-
-        .flow-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
-            align-items: center;
-            margin: 2rem 0;
-        }
-
-        .flow-node {
-            background: linear-gradient(135deg, rgba(0, 180, 216, 0.1), rgba(139, 92, 246, 0.1));
-            border: 2px solid rgba(0, 180, 216, 0.3);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            min-width: 200px;
-            position: relative;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .flow-node:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.3);
-            border-color: var(--neon-purple);
-        }
-
-        .flow-node::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
-            border-radius: 15px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .flow-node:hover::before {
-            opacity: 0.7;
-        }
-
-        .flow-arrow {
-            font-size: 2rem;
-            color: var(--neon-blue);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
         }
 
         p, li {
@@ -918,6 +915,130 @@
             color: var(--star-yellow);
         }
 
+        /* Instructor Cards */
+        .instructors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .instructor-card {
+            background: linear-gradient(135deg, var(--glass-bg), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .instructor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: left 0.5s;
+        }
+
+        .instructor-card:hover::before {
+            left: 100%;
+        }
+
+        .instructor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 180, 216, 0.2);
+            border-color: var(--neon-blue);
+        }
+
+        .instructor-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem auto;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: float-icon 3s ease-in-out infinite;
+        }
+
+        .avatar-icon {
+            font-size: 4rem;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        .instructor-info h2 {
+            color: var(--neon-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.8rem;
+            border: none;
+            padding: 0;
+        }
+
+        .instructor-info h2::before {
+            display: none;
+        }
+
+        .instructor-title {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .instructor-affiliation {
+            color: var(--star-yellow);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .instructor-bio {
+            text-align: left;
+            margin: 1.5rem 0;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .instructor-bio p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .instructor-specialties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .specialty-tag {
+            background: linear-gradient(45deg, rgba(0, 180, 216, 0.2), rgba(139, 92, 246, 0.2));
+            border: 1px solid rgba(0, 180, 216, 0.4);
+            color: var(--neon-blue);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .specialty-tag:hover {
+            background: linear-gradient(45deg, rgba(0, 180, 216, 0.3), rgba(139, 92, 246, 0.3));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 180, 216, 0.2);
+        }
+
         /* References with cool styling */
         .reference-item {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
@@ -952,6 +1073,14 @@
             .card-grid {
                 grid-template-columns: 1fr;
             }
+
+            .instructors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .instructor-card {
+                min-width: unset;
+            }
         }
     </style>
 </head>
@@ -963,6 +1092,7 @@
     <nav class="navbar">
         <div class="nav-tabs">
             <a href="#" class="nav-tab active" data-tab="home">🏠 Home</a>
+            <a href="#" class="nav-tab" data-tab="instructors">👨‍🏫 Instructors</a>
             <a href="#" class="nav-tab" data-tab="github">💻 GitHub</a>
             <a href="#" class="nav-tab" data-tab="contacts">📞 Contacts</a>
             <a href="#" class="nav-tab" data-tab="references">📚 References</a>
@@ -1249,6 +1379,51 @@
                                 <span class="prereq-check">✓</span>
                                 <span>Familiarity with Unix/Linux command line</span>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="instructors" class="content-section">
+            <h1>Course Instructors</h1>
+            <div class="instructors-grid">
+                <div class="instructor-card">
+                    <div class="instructor-avatar">
+                        <span class="avatar-icon">👨‍🎓</span>
+                    </div>
+                    <div class="instructor-info">
+                        <h2>Bahram Mobasher</h2>
+                        <div class="instructor-title">Distinguished Professor</div>
+                        <div class="instructor-affiliation">University of California, Riverside</div>
+                        <div class="instructor-bio">
+                            <p>Professor Mobasher is a distinguished faculty member at UCR with extensive research experience in observational cosmology, galaxy evolution, and astronomical instrumentation. His expertise spans multi-wavelength astronomy and large-scale survey data analysis.</p>
+                        </div>
+                        <div class="instructor-specialties">
+                            <span class="specialty-tag">Galaxy Evolution</span>
+                            <span class="specialty-tag">Observational Extragalactic Astronomy</span>
+                            <span class="specialty-tag">Multi-wavelength Astronomy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="instructor-card">
+                    <div class="instructor-avatar">
+                        <span class="avatar-icon">👨‍💻</span>
+                    </div>
+                    <div class="instructor-info">
+                        <h2>Saeed Rezaee</h2>
+                        <div class="instructor-title">Project Scientist</div>
+                        <div class="instructor-affiliation">University of California, Riverside</div>
+                        <div class="instructor-bio">
+                            <p>Dr. Rezaee brings expertise in computational astronomy and data science techniques. His research focuses on the stellar populations and dust and metal contents of high-redshift galaxies.</p>
+                        </div>
+                        <div class="instructor-specialties">
+                            <span class="specialty-tag">Computational Astronomy</span>
+                            <span class="specialty-tag">Galaxy formation and evolution</span>
+                            <span class="specialty-tag">stellar populations and dust properties of high redshift galaxies</span>
+                            <span class="specialty-tag">Data Science</span>
+                            <span class="specialty-tag">Python Programming</span>
                         </div>
                     </div>
                 </div>
